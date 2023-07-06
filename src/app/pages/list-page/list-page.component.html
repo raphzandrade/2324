@@ -1,0 +1,8 @@
+<h1>{{pageTitle}}:</h1>
+
+<app-todo-card *ngFor="let todo of todos" [todoInput]="todo" (delete)="onDeleteTodo($event)">
+</app-todo-card>
+
+<button (click)="addNewTodo()">Add new Todo</button>
+<button (click)="onShow($event)">Show me the click event!</button>
+<br /> <br />

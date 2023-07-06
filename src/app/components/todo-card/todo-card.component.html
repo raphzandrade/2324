@@ -1,0 +1,13 @@
+<div class="todo" *ngIf="todoInput">
+    <p>
+        Id: {{ todoInput.id }}
+    </p>
+
+    <p>
+        {{ todoInput.message }}
+    </p>
+
+    <button (click)="onDelete()">
+        Delete this!
+    </button>
+</div>
