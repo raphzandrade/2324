@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/interfaces';
 import { TodosService } from 'src/app/services';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-page',
@@ -8,42 +10,59 @@ import { TodosService } from 'src/app/services';
   styleUrls: ['./list-page.component.scss']
 })
 export class ListPageComponent implements OnInit {
-
-  constructor(
-    todosService: TodosService
-  ) {
-    this.todosService = todosService
-  }
-
-  ngOnInit(): void {
-    this.todos = this.todosService.getTodos();
-  }
-
-  private todosService: TodosService;
-
+  // :Type
   public todos: Todo[] = [];
-
-  public showMessage: boolean;
 
   public readonly pageTitle: string = 'Meus Todos';
 
-  public addNewTodo() {
-    // const newTodo = new Todo(4, 'new Todo')
-    const newTodo: Todo = { id: this.onSum(2, 2), message: 'new Todo' }
+  public showErrorMessage: boolean = false;
+  public errorMessage: string = 'Erro desconhecido';
 
-    this.todos.push(newTodo)
+  public count: number = 0;
+  public countSubject: Subject<number> = new Subject()
+
+  constructor(
+    public todosService: TodosService
+  ) { }
+
+  ngOnInit(): void {
+    this.todosService
+      .getTodos()
+      .subscribe((pacote) => {
+        this.todos = pacote;
+      })
   }
 
-  public onDeleteTodo(id): void {
-    console.log('o id é:  ', id);
+  public addToCount(count: number): void {
+    const newCount = count + 1;
+
+    this.countSubject.next(newCount);
   }
 
-  public onShow(event: Event) {
-    console.log(event)
+  public addNewTodo(): void {
+    const newTodo: Todo = { id: 2, message: 'new Todo' }
+
+    this.todosService
+      .postTodo(newTodo)
+      .subscribe(
+        (pacote: Todo) => {
+          console.log('sucesso')
+          this.todos.push(pacote)
+        },
+        (errorObj: HttpErrorResponse) => {
+          console.log('falhou!', errorObj.message)
+          this.showErrorMessage = true;
+          this.errorMessage = errorObj.message;
+        })
   }
 
-  private onSum(a: number, b: number): number {
-    return a + b;
-  }
+  public onDeleteTodo(id: number): void {
+    this.todosService.deleteTodo(id).subscribe(
+      () => {
+        const index = this.todos.findIndex((value: Todo) => { value.id = id })
 
+        this.todos = this.todos.splice(index, 1)
+      }
+    )
+  }
 }

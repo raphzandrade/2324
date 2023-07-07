@@ -1,0 +1,16 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "message": "o que eu tenho que fazer"
+    },
+    {
+      "id": 6,
+      "message": "new Todo"
+    },
+    {
+      "id": 2,
+      "message": "new Todo"
+    }
+  ]
+}

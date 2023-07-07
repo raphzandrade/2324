@@ -1,8 +1,12 @@
 <h1>{{pageTitle}}:</h1>
+<br />
+<h3>A contagem está em: {{ count }}</h3>
 
 <app-todo-card *ngFor="let todo of todos" [todoInput]="todo" (delete)="onDeleteTodo($event)">
 </app-todo-card>
 
+<br />
+<span *ngIf="showErrorMessage">Houve um problema ao criar um novo todo! Erro: {{errorMessage}}</span>
+<br />
 <button (click)="addNewTodo()">Add new Todo</button>
-<button (click)="onShow($event)">Show me the click event!</button>
 <br /> <br />

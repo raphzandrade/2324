@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Todo } from 'src/app/interfaces';
 
 
@@ -7,19 +9,33 @@ import { Todo } from 'src/app/interfaces';
 })
 export class TodosService {
 
-  private todos: Todo[] = [
-    { id: 1, message: 'o que eu tenho que fazer' },
-    { id: 2, message: 'o que eu tenho que fazer' },
-    { id: 3, message: 'o que eu tenho que fazer' }
-  ]
+  private readonly endpointUrl: string = 'http://localhost:3000/todos';
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-  public getTodos(): Todo[] {
-    return this.todos;
+  public getTodos(): Observable<Todo[]> {
+    const motoboy: Observable<Todo[]> = this.httpClient.get<Todo[]>(this.endpointUrl);
+
+    return motoboy;
   }
 
-  public saySomething(): void {
-    console.log('I will not say nothing.');
+  public postTodo(todo: Todo): Observable<Todo> {
+    const motoboy: Observable<Todo> =
+      this.httpClient.post<Todo>(this.endpointUrl, todo);
+
+    return motoboy;
+  }
+
+  public deleteTodo(id: number): Observable<void> {
+    const todoUrl = this.endpointUrl + '/' + id;
+
+    const motoboy: Observable<void> =
+      this.httpClient.delete<void>(todoUrl)
+
+    return motoboy;
   }
 }
+
+
