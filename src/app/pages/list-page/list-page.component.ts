@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/interfaces';
 import { TodosService } from 'src/app/services';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-page',
@@ -22,7 +23,8 @@ export class ListPageComponent implements OnInit {
   public countSubject: Subject<number> = new Subject()
 
   constructor(
-    public todosService: TodosService
+    private todosService: TodosService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -40,20 +42,7 @@ export class ListPageComponent implements OnInit {
   }
 
   public addNewTodo(): void {
-    const newTodo: Todo = { id: 2, message: 'new Todo' }
-
-    this.todosService
-      .postTodo(newTodo)
-      .subscribe(
-        (pacote: Todo) => {
-          console.log('sucesso')
-          this.todos.push(pacote)
-        },
-        (errorObj: HttpErrorResponse) => {
-          console.log('falhou!', errorObj.message)
-          this.showErrorMessage = true;
-          this.errorMessage = errorObj.message;
-        })
+    this.router.navigateByUrl('/cadastro');
   }
 
   public onDeleteTodo(id: number): void {

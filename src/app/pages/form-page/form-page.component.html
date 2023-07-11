@@ -1,0 +1,46 @@
+<button (click)="onBack()">Back</button>
+<br />
+<br />
+
+<form class="form" [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+    <p>Campos com * são obrigatórios</p>
+
+    <span>Id*:</span>
+    <br />
+    <input formControlName="id" /><br />
+
+    <ng-container *ngIf="getControlError('id', 'required')">
+        <span>O campo ID é obrigatório</span><br />
+    </ng-container>
+
+    <ng-container *ngIf="getControlError('id', 'isnumberonly')">
+        <span>O campo ID deve conter apenas números</span><br />
+    </ng-container>
+
+    <br />
+    <br />
+
+    <span>Message*:</span>
+    <br />
+    <input formControlName="message" /><br />
+
+    <ng-container *ngIf="getControlError('message', 'required')">
+        <span>O campo Message é obrigatório</span><br />
+    </ng-container>
+
+    <ng-container *ngIf="getControlError('message', 'minlength')">
+        <span>O campo Message precisa ter no mínimo 5 caracteres</span><br />
+    </ng-container>
+
+    <ng-container *ngIf="getControlError('message', 'maxlength')">
+        <span>O campo Message pode ter no máximo 20 caracteres.</span><br />
+    </ng-container>
+
+    <br />
+    <br />
+
+    <p *ngIf="isSending">Enviando novo todo!</p>
+    <button type="submit" [disabled]="myFormGroup.invalid || isSending">Submit</button>
+</form>
+
+<br />
