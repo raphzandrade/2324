@@ -48,9 +48,9 @@ export class ListPageComponent implements OnInit {
   public onDeleteTodo(id: number): void {
     this.todosService.deleteTodo(id).subscribe(
       () => {
-        const index = this.todos.findIndex((value: Todo) => { value.id = id })
+        const index = this.todos.findIndex((value: Todo) => value.id === id )
 
-        this.todos = this.todos.splice(index, 1)
+        this.todos.splice(index, 1)
       }
     )
   }
