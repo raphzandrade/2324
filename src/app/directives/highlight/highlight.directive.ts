@@ -1,4 +1,5 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { TodosService } from 'src/app/services';
 
 @Directive({
   selector: '[appHighlight]'
@@ -7,11 +8,12 @@ export class HighlightDirective {
 
   @Input() public appHighlight: string = '';
 
+  @Input() public secondInput: string = ''
+
   private defaultBackgroundColor: string = 'yellow';
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer2
   ) { 
     this.elementRef.nativeElement.style.padding = '5px';
     this.elementRef.nativeElement.style.borderRadius = '99px';
@@ -20,13 +22,14 @@ export class HighlightDirective {
   @HostListener('mouseenter')
   public onMouseEnter(): void {
     const color = this.appHighlight || this.defaultBackgroundColor;
+    console.log(this.secondInput)
 
     this.changeBackgroundColor(color);
   }
 
   @HostListener('mouseleave')
   public onMouseLeave(): void {
-    this.changeBackgroundColor('transparent');
+    this.changeBackgroundColor('');
   }
 
   private changeBackgroundColor(color: string): void {
