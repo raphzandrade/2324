@@ -45,6 +45,10 @@ export class ListPageComponent implements OnInit {
     this.router.navigateByUrl('/cadastro');
   }
 
+  public onGoToDirectivesPage(): void {
+    this.router.navigateByUrl('/diretivas');
+  }
+
   public onDeleteTodo(id: number): void {
     this.todosService.deleteTodo(id).subscribe(
       () => {

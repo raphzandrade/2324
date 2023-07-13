@@ -1,0 +1,42 @@
+<!-- <ng-container *ngIf="option === 'initial'; else secondaryOption">
+    <p>Initial option</p>
+    <p>Initial option element #2</p>
+</ng-container>
+
+<ng-template #secondaryOption>
+    <p>Secondary Option</p>
+</ng-template>
+
+
+<br /> 
+<button (click)="changeOption()">Change option</button> -->
+
+<!-- <br />
+
+<ng-container [ngSwitch]="optionNumber">
+    <p *ngSwitchCase="0">Option 1</p>
+    <p *ngSwitchCase="1">Options 2</p>
+    <p *ngSwitchDefault>Option default</p>
+</ng-container>
+
+<br />
+<button (click)="onIncrementOption()">On increment option</button> -->
+
+<!-- <br />
+
+<p [ngClass]="{'blue': itsBlue}" class="pill">My paragraph</p>
+<p [ngStyle]="{'display': displayText}">My second paragraph</p>
+<br />
+<button (click)="changeColor()">Change color</button>
+<br/>
+<button (click)="toggleBlue()">Toggle blue</button>
+<br />
+<button (click)="displayParagraph()">Show the other paragraph</button> -->
+
+<br />
+
+<p appHighlight class="blue">My Paragraph</p>
+<br />
+<p appHighlight="red">My Paragraph</p>
+<br />
+<p appHighlight="blue">My Paragraph</p>

@@ -1,5 +1,7 @@
 <h1>{{pageTitle}}:</h1>
 <br />
+<button (click)="onGoToDirectivesPage()">Go to directives page</button>
+<br />
 <h3>A contagem está em: {{ count }}</h3>
 
 <app-todo-card *ngFor="let todo of todos" [todoInput]="todo" (delete)="onDeleteTodo($event)">
