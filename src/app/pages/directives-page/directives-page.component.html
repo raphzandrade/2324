@@ -33,10 +33,26 @@
 <br />
 <button (click)="displayParagraph()">Show the other paragraph</button> -->
 
-<br />
+<!-- <br />
 
 <p appHighlight class="blue" showOnlyToLoggedUser>My Paragraph</p>
 <br />
 <p appHighlight="red">My Paragraph</p>
 <br />
-<p appHighlight="blue">My Paragraph</p>
+<p appHighlight="blue">My Paragraph</p> -->
+
+<br/>
+
+<!-- <p>{{ dateNow | date:'hh:mm dd/MM/yy'}}</p>
+<p>{{lowerCaseText | uppercase }}</p>
+<p>{{ upperCaseText | lowercase }}</p>
+<p>{{ price | currency:'BRL' }}</p> -->
+
+<!-- <p>{{ countSubject | async}}</p>
+
+<button (click)="incrementCount()">Increment counter</button> -->
+
+<app-todo-card 
+    *ngFor="let todo of todosObservable | async" 
+    [todoInput]="todo">
+</app-todo-card>

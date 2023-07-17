@@ -4,7 +4,10 @@
 <br />
 <h3>A contagem está em: {{ count }}</h3>
 
-<app-todo-card *ngFor="let todo of todos" [todoInput]="todo" (delete)="onDeleteTodo($event)">
+<app-todo-card 
+    *ngFor="let todo of todos"
+    [todoInput]="todo" 
+    (delete)="onDeleteTodo($event)">
 </app-todo-card>
 
 <br />
@@ -12,3 +15,4 @@
 <br />
 <button (click)="addNewTodo()">Add new Todo</button>
 <br /> <br />
+<button (click)="refreshTodos()">Refresh todos</button>

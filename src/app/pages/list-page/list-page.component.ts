@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Todo } from 'src/app/interfaces';
 import { TodosService } from 'src/app/services';
-import { Subject } from 'rxjs';
+import { Subject, UnsubscriptionError, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss']
 })
-export class ListPageComponent implements OnInit {
+export class ListPageComponent implements OnInit, OnDestroy {
   // :Type
   public todos: Todo[] = [];
 
@@ -20,7 +20,9 @@ export class ListPageComponent implements OnInit {
   public errorMessage: string = 'Erro desconhecido';
 
   public count: number = 0;
-  public countSubject: Subject<number> = new Subject()
+  public countSubject: Subject<number> = new Subject();
+
+  private unsubscribe: Subject<void> = new Subject();
 
   constructor(
     private todosService: TodosService,
@@ -28,8 +30,22 @@ export class ListPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.refreshTodos()
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
+  public refreshTodos(): void {
+    this.unsubscribe.next();
+
     this.todosService
       .getTodos()
+      .pipe(
+        takeUntil(this.unsubscribe)
+      )
       .subscribe((pacote) => {
         this.todos = pacote;
       })

@@ -1,0 +1,8 @@
+<app-todo-card 
+    *ngFor="let todo of todosObs | async" 
+    [todoInput]="todo">
+</app-todo-card>
+
+<br/>
+
+<button (click)="refreshTodos()">Refresh todos</button>
