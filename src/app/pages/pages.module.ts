@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DirectivesPageComponent } from './directives-page/directives-page.component';
 import { DirectivesModule } from '../directives/directives.module';
 import { ListPagePushBasedComponent } from './list-page-push-based/list-page-push-based.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 
@@ -15,7 +16,8 @@ import { ListPagePushBasedComponent } from './list-page-push-based/list-page-pus
     ListPageComponent,
     FormPageComponent,
     DirectivesPageComponent,
-    ListPagePushBasedComponent
+    ListPagePushBasedComponent,
+    LoginPageComponent
   ],
   imports: [
     CommonModule,

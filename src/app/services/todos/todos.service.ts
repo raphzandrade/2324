@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from 'src/app/interfaces';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -9,14 +10,16 @@ import { Todo } from 'src/app/interfaces';
 })
 export class TodosService {
 
-  private readonly endpointUrl: string = 'http://localhost:3000/todos';
+  private readonly endpointUrl: string = 'http://localhost:3000/660/todos';
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private authService: AuthService
   ) { }
 
   public getTodos(): Observable<Todo[]> {
-    const motoboy: Observable<Todo[]> = this.httpClient.get<Todo[]>(this.endpointUrl);
+    const motoboy: Observable<Todo[]> = 
+      this.httpClient.get<Todo[]>(this.endpointUrl);
 
     return motoboy;
   }

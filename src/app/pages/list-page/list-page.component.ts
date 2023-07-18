@@ -4,6 +4,7 @@ import { Todo } from 'src/app/interfaces';
 import { TodosService } from 'src/app/services';
 import { Subject, UnsubscriptionError, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-list-page',
@@ -27,6 +28,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   constructor(
     private todosService: TodosService,
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -73,5 +75,9 @@ export class ListPageComponent implements OnInit, OnDestroy {
         this.todos.splice(index, 1)
       }
     )
+  }
+
+  public onLogout(): void {
+    this.authService.logout();
   }
 }

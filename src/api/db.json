@@ -7,6 +7,37 @@
     {
       "id": "12",
       "message": "lavar louça"
+    },
+    {
+      "id": "40",
+      "message": "lavar louço"
+    }
+  ],
+  "users": [
+    {
+      "email": "teste@teste",
+      "password": "$2a$10$EHEnzzjvOdtNBSjTIh/nquG9tQ8cBuopMcGZZIKc8vZ9ZS.9GZheO",
+      "id": 1
+    },
+    {
+      "email": "teste2@teste",
+      "password": "$2a$10$CNddI7zwvwIZm4fbjUs9uecDGeo6FtLsl6ZTXynHnU2Yw.RW2iRVq",
+      "id": 2
+    },
+    {
+      "email": "teste3@teste",
+      "password": "$2a$10$VhzuQu5H7Q5C/IclG41SruUzlHMEnHBgD2YJ75.HVFl/385BVaXC.",
+      "id": 3
+    },
+    {
+      "email": "teste4@teste",
+      "password": "$2a$10$a7/TIYDbKCcQJOgMIllAoec6TAcLwsKfLbiq0on/NuIwT/vHmKEsO",
+      "id": 4
+    },
+    {
+      "email": "teste5@teste",
+      "password": "$2a$10$EC0AWFkqz5dEAvjcuamZQekcCt/w4HGdUQAvBDZVSUEt8DKlKxqNi",
+      "id": 5
     }
   ]
 }

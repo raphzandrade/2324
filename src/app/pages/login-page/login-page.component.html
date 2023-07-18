@@ -1,0 +1,30 @@
+<ng-container *ngIf="myForm">
+    <form [formGroup]="myForm" (ngSubmit)="onLogin()">
+        <span>Email:</span><br/>
+        <input formControlName="email"/><br/>
+        <ng-container *ngIf="getControlError('email', 'required')">
+            <p>O campo email é obrigatório!</p>
+            <br/>
+        </ng-container>
+
+        <ng-container *ngIf="getControlError('email', 'email')">
+            <p>Precisa ser um email válido!</p>
+            <br/>
+        </ng-container>
+    
+        <span>Senha: </span><br/>
+        <input formControlName="password"/><br/>
+        <ng-container *ngIf="getControlError('password', 'minlength')">
+            <p>O campo senha precisa ter no mínimo 4 caracteres!</p>
+            <br/>
+        </ng-container>
+
+        <ng-container *ngIf="getControlError('password', 'maxlength')">
+            <p>O campo senha precisa ter no máximo 10 caracteres!</p>
+            <br/>
+        </ng-container>
+    
+        <br/>
+        <button type="submit" [disabled]="myForm.invalid">Enviar:</button>
+    </form>
+</ng-container>

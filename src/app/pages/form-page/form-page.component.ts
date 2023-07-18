@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Todo } from 'src/app/interfaces';
 import { TodosService } from 'src/app/services';
+import { FormsService } from 'src/app/services/forms/forms.service';
 import { NumberOnlyValidator } from 'src/app/validators';
 
 @Component({
@@ -19,6 +20,7 @@ export class FormPageComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private todosService: TodosService,
+    private formsService: FormsService
   ) { }
 
 
@@ -41,15 +43,7 @@ export class FormPageComponent {
   }
 
   public getControlError(controlName: string, errorName: string): boolean {
-    const control = this.myFormGroup.get(controlName);
-
-    const controlIsPristine = control.pristine;
-
-    if (controlIsPristine) return false;
-
-    const hasError: boolean = !!control.getError(errorName)
-
-    return hasError;
+    return this.formsService.getControlError(this.myFormGroup, controlName, errorName)
   }
 
   public onSubmit(): void {
